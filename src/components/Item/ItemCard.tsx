@@ -19,6 +19,7 @@ import { AppDispatch } from '../../app/store';
 import { addProduct } from '../../features/cartStore/cartStoreSlice';
 import { Collapse } from '@mui/material';
 
+
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
 }
@@ -26,6 +27,7 @@ interface ItemProps {
     children?: unknown;
     product: Product;
 }
+
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
     const { ...other } = props;
@@ -37,6 +39,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
         duration: theme.transitions.duration.shortest,
     }),
 }));
+
 
 export default function RecipeReviewCard({ product }: ItemProps) {
     const [expanded, setExpanded] = React.useState(false);
@@ -59,8 +62,19 @@ export default function RecipeReviewCard({ product }: ItemProps) {
 
     return (
         <Card>
-            <CardHeader
-                sx={{height: '100px'}}
+            <CardHeader   
+                sx={{
+                    height: '120px',
+                    '& .MuiCardHeader-root': { display: 'flex', alignItems: 'center' },
+                    '& .MuiCardHeader-action': { alignSelf: 'center' },
+                }}
+                
+                // classes={{'[&.MuiCardHeader-action]: self-center'}}
+                // className={clsx(
+                //     'h-[120px]',
+                //     '[&.MuiCardHeader-root]:self-center',
+                //     '[&.MuiCardHeader-action]:self-center',
+                // )}
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
                         TMA
@@ -74,11 +88,31 @@ export default function RecipeReviewCard({ product }: ItemProps) {
                 title={product.title}
                 subheader={`Price: $${product.price}`}
             />
+            {/* <StyledCardHeader
+                className="self-center"
+                avatar={
+                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                        TMA
+                    </Avatar>
+                }
+                action={
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                }
+                title={product.title}
+                subheader={`Price: $${product.price}`}
+            /> */}
 
-            <CardMedia component="img" image={product.image} alt="Paella dish" sx={{maxHeight: '350px', objectFit: 'fill'}}/>
+            <CardMedia
+                component="img"
+                image={product.image}
+                alt="Paella dish"
+                sx={{ objectFit: 'fill', height: '300px' }}
+            />
 
-            <CardContent>
-                <Typography variant="body2" color="text.secondary" className='text-justify'>
+            <CardContent sx={{ minHeight: '120px' }}>
+                <Typography variant="body2" color="text.secondary" className="text-justify">
                     {product.description.length > 100 ? (
                         <>
                             {content}

@@ -40,9 +40,9 @@ const ItemCheckOut: React.FC<ItemCheckOutProps> = ({ product, onCheckOut }) => {
         onCheckOut(product, event.target.checked);
     };
     return (
-        <div className={`flex items-center gap-4 border-b-gray-400 border-b-2 w-full h-full ${checked ? 'bg-green-200': ''}`}>
+        <div className={`flex items-center gap-4 border-b-gray-400 border-b-2 w-full h-full mb-2 ${checked ? 'bg-green-200': ''}`}>
             <Checkbox checked={checked} onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
-            <div className="w-5 flex-shrink">
+            <div className="w-10 flex-shrink">
                 <img src={product.image} alt={`product_${product.id}`} className="object-fill" />
             </div>
             <div>Title: {product.title}</div>
@@ -105,7 +105,7 @@ export default function CustomizedBadges() {
                     <div className='bg-gray-50'>
                         {cartStoreReducer.products.map((product, index) => {
                             return (
-                                <div key={index} className='max-h-20'>
+                                <div key={index} className='max-h-40'>
                                     <ItemCheckOut product={product} onCheckOut={onCheckOut}></ItemCheckOut>
                                 </div>
                             );
@@ -113,7 +113,7 @@ export default function CustomizedBadges() {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCheckOut} color="primary">
+                    <Button variant='contained' onClick={handleCheckOut} color="primary">
                         Check out
                     </Button>
                     <Button onClick={handleClose} color="error" autoFocus>
