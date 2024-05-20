@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import productsReducer from '../features/fakeStore/fakeStoreSlice'
-import cartStoreReducer from '../features/cartStore/cartStoreSlice'
+import calculatorReducer from '../features/Calculator/CalculatorSlice';
 
 const store = configureStore({
     reducer: {
-        products: productsReducer,
-        cartStore: cartStoreReducer
+        calculator: calculatorReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
 });
